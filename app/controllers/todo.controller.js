@@ -57,10 +57,11 @@ const completeTaskController = async (req, res) => {
   try {
     const { id } = req;
     const { todoId } = req.params;
+    const { uncheck } = req.query;
 
     const updateTodo = await Todos.update(
       {
-        isComplete: true,
+        isComplete: uncheck ? false : true,
       },
       {
         where: {
