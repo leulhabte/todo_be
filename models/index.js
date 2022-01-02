@@ -4,19 +4,15 @@ const fs = require("fs");
 const path = require("path");
 const Sequelize = require("sequelize");
 const basename = path.basename(__filename);
-
+const config = require(__dirname + "/../config/config.js");
 const db = {};
-let sequelize;
 
+let sequelize;
 sequelize = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USER_NAME,
-  process.env.DB_PASSWORD,
-  {
-    port: 3306,
-    host: process.env.DB_HOST,
-    dialect: "mysql",
-  }
+  config.database,
+  config.username,
+  config.password,
+  config
 );
 
 fs.readdirSync(__dirname)
